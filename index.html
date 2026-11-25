@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>YourStartup</title>
-  <meta name="description" content="A student startup prototype for BSAD 281.">
+  <title>GoodFood</title>
+  <meta name="description" content="GoodFood helps budget-conscious cooks find affordable, healthy meals using ingredients they already have.">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -14,10 +14,13 @@
        Each link points to a "view" further down the page (#home, #explore, #about).
        ========================================================= -->
   <header class="site-header">
-    <a class="brand" href="#home" id="brand-name">YourStartup</a>
+    <a class="brand" href="#home">
+      <span class="brand-mark" aria-hidden="true">GF</span>
+      <span id="brand-name">GoodFood</span>
+    </a>
     <nav aria-label="Main">
       <a href="#home">Home</a>
-      <a href="#explore">Explore</a>
+      <a href="#explore">Get started</a>
       <a href="#about">About</a>
     </nav>
   </header>
@@ -29,45 +32,70 @@
          ======================================================= -->
     <section id="home" data-view>
       <div class="hero">
-        <p class="eyebrow">Prototype</p>
-        <h1 id="tagline">One sentence that says what your startup does.</h1>
-        <p class="lead" id="pitch">
-          Who is your customer, what problem do they have, and why is your
-          solution better than what they use today?
-        </p>
-        <a class="button" href="#explore">See it in action</a>
+        <div class="hero-copy">
+          <p class="eyebrow">Affordable healthy eating</p>
+          <h1 id="tagline">Good food should fit your life and your budget.</h1>
+          <p class="lead" id="pitch">
+            GoodFood helps people following a budget turn the ingredients they already have into delicious, healthy meals.
+          </p>
+          <a class="button" href="#explore">Find my first meal</a>
+        </div>
+        <div class="hero-art" aria-label="A colorful plate of healthy food">
+          <span class="art-ring ring-one"></span>
+          <span class="art-ring ring-two"></span>
+          <div class="plate">
+            <span class="ingredient ingredient-one"></span>
+            <span class="ingredient ingredient-two"></span>
+            <span class="ingredient ingredient-three"></span>
+            <span class="ingredient ingredient-four"></span>
+          </div>
+          <div class="ingredient-label label-budget">Budget-friendly</div>
+          <div class="ingredient-label label-waste">Less waste</div>
+        </div>
       </div>
 
+      <p class="steps-heading">Making dinner easier in three simple steps</p>
       <div class="steps">
         <div class="card">
-          <h2>1. Step one</h2>
-          <p>Describe the first thing a customer does.</p>
+          <span class="step-number">1</span>
+          <h2>Add what you have</h2>
+          <p>Enter your available ingredients and set a meal budget.</p>
         </div>
         <div class="card">
-          <h2>2. Step two</h2>
-          <p>Describe what happens next.</p>
+          <span class="step-number">2</span>
+          <h2>Find a meal</h2>
+          <p>Get affordable recipe ideas that match your ingredients and tastes.</p>
         </div>
         <div class="card">
-          <h2>3. Step three</h2>
-          <p>Describe the result the customer gets.</p>
+          <span class="step-number">3</span>
+          <h2>Cook and save</h2>
+          <p>Cook a delicious meal while saving money and reducing waste.</p>
         </div>
       </div>
     </section>
 
     <!-- =======================================================
-         VIEW 2: EXPLORE — a list built from the fake data in data.js.
+         VIEW 2: GET STARTED — placeholder for the prototype.
          ======================================================= -->
     <section id="explore" data-view hidden>
-      <h1>Explore</h1>
-      <p class="muted">These examples are fake. They come from <code>data.js</code>.</p>
+      <div class="page-heading">
+        <p class="eyebrow">Get started</p>
+        <h1>Let’s plan something delicious.</h1>
+        <p class="lead">Your personalized meal finder is coming soon.</p>
+      </div>
 
-      <label class="search">
+      <div class="placeholder-panel" aria-label="Meal finder coming soon">
+        <span class="placeholder-icon" aria-hidden="true">&#127858;</span>
+        <h2>Good things are cooking</h2>
+        <p>Add your ingredients and budget to find an affordable meal.</p>
+      </div>
+
+      <label class="search" hidden>
         <span>Search</span>
         <input type="search" id="search-box" placeholder="Type to filter…">
       </label>
-
-      <p class="muted" id="saved-count"></p>
-      <div class="grid" id="listing-grid"></div>
+      <p class="muted" id="saved-count" hidden></p>
+      <div class="grid" id="listing-grid" hidden></div>
       <p class="empty" id="empty-message" hidden>Nothing matches your search.</p>
     </section>
 
@@ -75,9 +103,38 @@
          VIEW 3: ABOUT — your team and your story.
          ======================================================= -->
     <section id="about" data-view hidden>
-      <h1>About us</h1>
-      <p>Tell the story of why your team started this company.</p>
-      <p>Use first names only, or no names at all — this site is public.</p>
+      <div class="page-heading about-heading">
+        <p class="eyebrow">Our story</p>
+        <h1>Better meals begin with what you already have.</h1>
+      </div>
+
+      <div class="about-grid">
+        <article class="about-story">
+          <h2>Why we started GoodFood</h2>
+          <p>GoodFood began when a group of students kept having the same problem: full cupboards, busy schedules, and no idea what to cook without overspending.</p>
+          <p>We imagined a friendly meal guide that puts a budget, available ingredients, and healthy choices together in one place.</p>
+        </article>
+        <aside class="mission-card">
+          <span aria-hidden="true">&#10084;</span>
+          <h2>Our mission</h2>
+          <p>Make affordable, healthy eating feel simple, practical, and enjoyable for everyone.</p>
+        </aside>
+      </div>
+
+      <div class="values">
+        <div class="card">
+          <h2>Thoughtful</h2>
+          <p>Recipes should respect real budgets and everyday ingredients.</p>
+        </div>
+        <div class="card">
+          <h2>Helpful</h2>
+          <p>Finding a meal should be quick, clear, and reassuring.</p>
+        </div>
+        <div class="card">
+          <h2>Waste-conscious</h2>
+          <p>Small changes at dinner can help food go further.</p>
+        </div>
+      </div>
     </section>
 
   </main>

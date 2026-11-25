@@ -2,8 +2,8 @@
 
 Keep this up to date as you go — a few lines per work session is enough. It's much harder to reconstruct at the end.
 
-**Team name:**
-**Startup name:**
+Adam Currie
+**GoodFood:**
 **Live site link:**
 
 ---
@@ -11,6 +11,18 @@ Keep this up to date as you go — a few lines per work session is enough. It's 
 ## Work sessions
 
 Copy this block for each session.
+
+### Session — [date] — driver: [first name]
+
+- **establish idea for the website with copilot:**
+- **Key prompts we gave Copilot** (paste the important ones):
+  1. My startup idea is: **called GoodFood**. Our customers are **anyone wanting to follow a budget, while eating delicious healthy meals**, and the problem we solve is **the difficulty of finding affordable meals and knowing what to cook with the ingredients you have**. Update `data.js` and the text in `index.html` so the site describes our startup. Don't change the layout yet.
+  2. now create a friendly looking home page. with the name of the company what we do, for whom, and why it matters.
+afterwards you can move to the get started/ explore page which you can leave blank for now,
+and the about us page you can make up
+- **What worked:** everything i asked worked, 
+- **What broke, and how we fixed it:** i didnt like the theme so i changed the design/colours a little
+- **Committed?** yes / no — commit message:
 
 ### Session — [date] — driver: [first name]
 
@@ -22,7 +34,6 @@ Copy this block for each session.
 - **What broke, and how we fixed it:**
 - **Committed?** yes / no — commit message:
 
----
 
 ## Things that broke (running list)
 

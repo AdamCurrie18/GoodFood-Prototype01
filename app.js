@@ -33,6 +33,7 @@
 
   let savedIds = storage.get("savedIds", []);
   let premiumActive = false;
+  let activePlanDinners = null;
   const defaultNutritionTargets = {
     calories: 2000,
     protein: 50,
@@ -109,6 +110,7 @@
   const mealPlan = document.getElementById("meal-plan");
   const groceryList = document.getElementById("grocery-list");
   const storeNote = document.getElementById("store-note");
+  const sponsoredPromotion = document.getElementById("sponsored-promotion");
   const recipeTitle = document.getElementById("recipe-title");
   const recipeDescription = document.getElementById("recipe-description");
   const recipeBack = document.getElementById("recipe-back");
@@ -124,6 +126,48 @@
   const premiumStatus = document.getElementById("premium-status");
   const nutritionTargetForm = document.getElementById("nutrition-target-form");
   const targetStatus = document.getElementById("target-status");
+  const leftDemoAd = document.getElementById("left-demo-ad");
+  const rightDemoAd = document.getElementById("right-demo-ad");
+
+  const demoAds = [
+    { brand: "GreenThumb Home", name: "Countertop herb garden", detail: "Fresh basil and mint, right by your kitchen.", style: "herb", illustration: '<path d="M119 126h82l-10 38h-62z" fill="#c77c46"/><path d="M160 128V53M160 91l-29-24M160 105l27-26" fill="none" stroke="#315b3c" stroke-width="8" stroke-linecap="round"/><ellipse cx="126" cy="63" rx="20" ry="10" transform="rotate(35 126 63)" fill="#78a866"/><ellipse cx="192" cy="74" rx="20" ry="10" transform="rotate(-38 192 74)" fill="#8ebd72"/><ellipse cx="160" cy="49" rx="13" ry="22" fill="#6d9d5a"/>' },
+    { brand: "QuickChop", name: "Mini food chopper", detail: "Prep weeknight vegetables in a few quick pulses.", style: "chopper", illustration: '<path d="M102 91h116l-13 59a18 18 0 0 1-18 14h-54a18 18 0 0 1-18-14z" fill="#eaf4f5" stroke="#486c82" stroke-width="7"/><path d="M116 95h88M126 83h68l-7-32h-54z" fill="#557fa3" stroke="#385d7d" stroke-width="6" stroke-linejoin="round"/><rect x="147" y="35" width="26" height="16" rx="7" fill="#dbe6e7"/><path d="M143 119h34M160 107v27" stroke="#97aaab" stroke-width="6" stroke-linecap="round"/><circle cx="191" cy="70" r="5" fill="#f3d16a"/>' },
+    { brand: "StoreWell", name: "Glass meal-prep set", detail: "Keep leftovers ready for tomorrow's lunch.", style: "containers", illustration: '<rect x="88" y="65" width="142" height="91" rx="16" fill="#d9eef0" fill-opacity=".72" stroke="#527b84" stroke-width="7"/><path d="M83 64h152v22H83z" rx="8" fill="#648d9a"/><path d="M101 99h116M101 113h83" stroke="#fff" stroke-width="6" stroke-linecap="round"/><rect x="112" y="126" width="34" height="17" rx="8" fill="#e49a58"/><rect x="154" y="126" width="47" height="17" rx="8" fill="#78a86f"/>' },
+    { brand: "Everyday Kitchen", name: "Nonstick skillet", detail: "A handy pan for simple meals and easy cleanup.", style: "pan", illustration: '<path d="M205 102l61 29-11 20-67-31" fill="#795c4c" stroke="#4d403b" stroke-width="6" stroke-linejoin="round"/><circle cx="146" cy="104" r="61" fill="#4d5966" stroke="#323d48" stroke-width="8"/><circle cx="146" cy="104" r="43" fill="#77838d"/><path d="M118 110q28-37 56 0-28 25-56 0z" fill="#f0c44c"/><circle cx="125" cy="94" r="7" fill="#82aa68"/><circle cx="163" cy="120" r="8" fill="#de845b"/>' },
+    { brand: "Sunny Basket", name: "Seasonal produce box", detail: "A colorful mix for your next home-cooked meal.", style: "produce", illustration: '<path d="M85 95h150l-15 69H100z" fill="#b77b45" stroke="#80552f" stroke-width="7" stroke-linejoin="round"/><path d="M100 112h120M108 132h104" stroke="#e0b37b" stroke-width="7"/><circle cx="123" cy="84" r="23" fill="#df6651"/><circle cx="165" cy="75" r="24" fill="#e6bd4b"/><path d="M185 102q7-42 38-42 2 38-38 42z" fill="#6e9d59"/><path d="M122 59q8-15 18-10" fill="none" stroke="#6e9d59" stroke-width="6" stroke-linecap="round"/>' },
+    { brand: "ClearDay", name: "Gentle dish soap", detail: "A little help with the after-dinner dishes.", style: "soap", illustration: '<path d="M133 69V51h53v20" fill="none" stroke="#4c7777" stroke-width="8" stroke-linecap="round"/><path d="M151 52V42h38v10" fill="none" stroke="#4c7777" stroke-width="7" stroke-linecap="round"/><path d="M119 75q0-12 13-12h56q13 0 13 13v73q0 14-14 14h-54q-14 0-14-14z" fill="#a8d7c6" stroke="#4c7777" stroke-width="7"/><rect x="133" y="99" width="54" height="31" rx="8" fill="#f7fcf9"/><path d="M147 115h27" stroke="#70a79a" stroke-width="6" stroke-linecap="round"/><circle cx="223" cy="71" r="11" fill="#e2f4ea"/><circle cx="239" cy="101" r="6" fill="#e2f4ea"/>' }
+  ];
+
+  function renderDemoAd(container, ad) {
+    const artwork = document.createElement("img");
+    artwork.className = "demo-ad-art " + ad.style;
+    artwork.alt = "Illustration of " + ad.name;
+    artwork.src = "data:image/svg+xml;charset=UTF-8,"
+        + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 190">'
+          + ad.illustration + "</svg>");
+    const copy = document.createElement("div");
+    copy.className = "demo-ad-copy";
+    const label = document.createElement("span");
+    label.className = "demo-ad-label";
+    label.textContent = "Ad · Demo";
+    const brand = document.createElement("p");
+    brand.className = "demo-ad-brand";
+    brand.textContent = ad.brand + " · fictional";
+    const title = document.createElement("h2");
+    title.textContent = ad.name;
+    const detail = document.createElement("p");
+    detail.textContent = ad.detail;
+    copy.append(label, brand, title, detail);
+    container.replaceChildren(artwork, copy);
+  }
+
+  function renderDemoAds() {
+    const firstIndex = Math.floor(Math.random() * demoAds.length);
+    const remainingAds = demoAds.filter(function (_ad, index) { return index !== firstIndex; });
+    const secondIndex = Math.floor(Math.random() * remainingAds.length);
+    renderDemoAd(leftDemoAd, demoAds[firstIndex]);
+    renderDemoAd(rightDemoAd, remainingAds[secondIndex]);
+  }
 
   // Reference prices are package estimates, not live store inventory or quotes.
   const packageCatalog = {
@@ -154,8 +198,37 @@
     "Black beans|can": { size: 1, label: "540 ml can", prices: { sobeys: 1.99, superstore: 1.69 } },
     "Ramen|package": { size: 1, label: "package", prices: { sobeys: 0.99, superstore: 0.59 } },
     "Peanut butter|g": { size: 1000, label: "1 kg jar", prices: { sobeys: 5.49, superstore: 4.5 } },
-    "Bread|slice": { size: 20, label: "loaf (about 20 slices)", prices: { sobeys: 4.49, superstore: 3.99 } }
+    "Bread|slice": { size: 20, label: "loaf (about 20 slices)", prices: { sobeys: 4.49, superstore: 3.99 } },
+    "Chicken breast|g": { size: 1000, label: "1 kg package", prices: { sobeys: 17.99, superstore: 15.99 } },
+    "Ground beef|g": { size: 450, label: "450 g package", prices: { sobeys: 8.99, superstore: 7.99 } },
+    "Broccoli|g": { size: 500, label: "500 g bunch", prices: { sobeys: 5.49, superstore: 4.49 } },
+    "Bell pepper|each": { size: 3, label: "3-pepper package", prices: { sobeys: 5.99, superstore: 4.99 } },
+    "Mushrooms|g": { size: 227, label: "227 g package", prices: { sobeys: 3.49, superstore: 2.99 } },
+    "Cream|ml": { size: 473, label: "473 ml carton", prices: { sobeys: 3.49, superstore: 2.99 } },
+    "Parmesan|g": { size: 200, label: "200 g package", prices: { sobeys: 7.49, superstore: 6.49 } },
+    "Spinach|g": { size: 227, label: "227 g package", prices: { sobeys: 4.49, superstore: 3.99 } },
+    "Lemon|each": { size: 2, label: "2-count package", prices: { sobeys: 3.99, superstore: 3.49 } },
+    "Gluten-free pasta|g": { size: 454, label: "454 g package", prices: { sobeys: 5.49, superstore: 4.99 } },
+    "Corn tortillas|each": { size: 12, label: "12-count package", prices: { sobeys: 5.49, superstore: 4.99 } },
+    "Tamari|ml": { size: 296, label: "296 ml bottle", prices: { sobeys: 5.99, superstore: 4.99 } },
+    "Rice noodles|package": { size: 1, label: "package", prices: { sobeys: 3.49, superstore: 2.99 } },
+    "Gluten-free bread|slice": { size: 16, label: "16-slice loaf", prices: { sobeys: 7.49, superstore: 6.99 } },
+    "Vegan ramen|package": { size: 1, label: "package", prices: { sobeys: 1.49, superstore: 1.19 } },
+    "Vegan cheddar|g": { size: 200, label: "200 g package", prices: { sobeys: 7.49, superstore: 6.99 } },
+    "Plant-based sour cream|ml": { size: 340, label: "340 ml tub", prices: { sobeys: 5.49, superstore: 4.99 } },
+    "Plant-based yogurt|ml": { size: 750, label: "750 ml tub", prices: { sobeys: 6.49, superstore: 5.99 } },
+    "Oat cream|ml": { size: 473, label: "473 ml carton", prices: { sobeys: 4.49, superstore: 3.99 } },
+    "Dairy-free parmesan|g": { size: 200, label: "200 g package", prices: { sobeys: 7.49, superstore: 6.99 } }
   };
+
+  const sponsoredOffers = [
+    { key: "Chicken breast|g", product: "Chicken breast", discount: 20 },
+    { key: "Parmesan|g", product: "Parmesan", discount: 15 },
+    { key: "Broccoli|g", product: "Broccoli", discount: 20 },
+    { key: "Mushrooms|g", product: "Mushrooms", discount: 15 },
+    { key: "Cream|ml", product: "Cream", discount: 20 },
+    { key: "Bell pepper|each", product: "Bell peppers", discount: 15 }
+  ];
 
   const dinners = [
     {
@@ -360,8 +433,190 @@
         { name: "Onion", amount: 0.1, unit: "each" },
         { name: "Bread", amount: 1, unit: "slice" }
       ]
+    },
+    {
+      id: "lemon-chicken-broccoli-rice",
+      name: "Lemon chicken and broccoli rice bowls",
+      description: "Chicken, broccoli, and peppers over rice with a lemon-soy pan sauce.",
+      imageColors: ["#d9b84e", "#6f9b5b", "#d27d4b"],
+      steps: [
+        "Rinse the rice and cook it according to the package directions.",
+        "Cut the chicken into small pieces and season lightly. Cook it in a large pan over medium heat until the thickest pieces reach 74 C (165 F).",
+        "Cut the broccoli and bell pepper into bite-sized pieces. Add them to the pan with a splash of water, cover, and cook for 5-7 minutes until tender.",
+        "Stir in the minced garlic and soy sauce. Cook for 1 minute, then squeeze in lemon juice and stir.",
+        "Serve the chicken and vegetables over the cooked rice, spooning the pan sauce over each bowl."
+      ],
+      ingredients: [
+        { name: "Chicken breast", amount: 150, unit: "g" },
+        { name: "Rice", amount: 75, unit: "g" },
+        { name: "Broccoli", amount: 100, unit: "g" },
+        { name: "Bell pepper", amount: 0.5, unit: "each" },
+        { name: "Soy sauce", amount: 15, unit: "ml" },
+        { name: "Garlic", amount: 0.5, unit: "clove" },
+        { name: "Lemon", amount: 0.25, unit: "each" }
+      ]
+    },
+    {
+      id: "creamy-chicken-mushroom-pasta",
+      name: "Creamy chicken and mushroom pasta",
+      description: "Chicken, mushrooms, and spinach folded into a creamy parmesan pasta.",
+      imageColors: ["#e0c989", "#729956", "#a76c47"],
+      steps: [
+        "Bring a pot of water to a boil and cook the pasta according to its package directions. Reserve a small mug of pasta water before draining.",
+        "Slice the chicken into small pieces and cook in a large pan over medium heat until the thickest pieces reach 74 C (165 F). Transfer the chicken to a plate.",
+        "Add the sliced mushrooms and minced garlic to the pan. Cook for 4-5 minutes until softened, adding a splash of water if the pan gets dry.",
+        "Pour in the cream and stir in the parmesan. Simmer gently for 2 minutes; do not let the sauce boil hard.",
+        "Add the spinach and stir until wilted, then return the chicken and drained pasta to the pan.",
+        "Toss everything together, loosening the sauce with a little reserved pasta water if needed. Serve hot."
+      ],
+      ingredients: [
+        { name: "Pasta", amount: 90, unit: "g" },
+        { name: "Chicken breast", amount: 125, unit: "g" },
+        { name: "Mushrooms", amount: 75, unit: "g" },
+        { name: "Spinach", amount: 30, unit: "g" },
+        { name: "Cream", amount: 60, unit: "ml" },
+        { name: "Parmesan", amount: 15, unit: "g" },
+        { name: "Garlic", amount: 0.5, unit: "clove" }
+      ]
+    },
+    {
+      id: "beef-broccoli-pepper-skillet",
+      name: "Beef, broccoli, and pepper skillet",
+      description: "A hearty beef and vegetable stir-fry served over rice.",
+      imageColors: ["#b66d49", "#78a35c", "#e0bc52"],
+      steps: [
+        "Rinse the rice and cook it according to the package directions.",
+        "Cut the broccoli, bell pepper, and mushrooms into bite-sized pieces. Slice the onion thinly.",
+        "Cook the ground beef in a large pan over medium heat, breaking it apart, until no pink remains and it is thoroughly cooked.",
+        "Add the vegetables and a splash of water. Cover and cook for 5-7 minutes, stirring once, until the broccoli is tender.",
+        "Stir in the soy sauce and cook uncovered for 1 minute. Serve the beef and vegetables over the rice."
+      ],
+      ingredients: [
+        { name: "Ground beef", amount: 125, unit: "g" },
+        { name: "Rice", amount: 60, unit: "g" },
+        { name: "Broccoli", amount: 75, unit: "g" },
+        { name: "Bell pepper", amount: 0.5, unit: "each" },
+        { name: "Mushrooms", amount: 40, unit: "g" },
+        { name: "Onion", amount: 0.1, unit: "each" },
+        { name: "Soy sauce", amount: 15, unit: "ml" }
+      ]
     }
   ];
+
+  function getDietaryDinners(restrictions) {
+    const selected = new Set(restrictions);
+    const meatAndFishIds = [
+      "tuna-pea-pasta",
+      "lemon-chicken-broccoli-rice",
+      "creamy-chicken-mushroom-pasta",
+      "beef-broccoli-pepper-skillet"
+    ];
+    const meatIds = [
+      "lemon-chicken-broccoli-rice",
+      "creamy-chicken-mushroom-pasta",
+      "beef-broccoli-pepper-skillet"
+    ];
+    const veganIds = [
+      "tomato-pasta",
+      "rice-bean-bowls",
+      "loaded-baked-potatoes",
+      "lentil-curry-rice",
+      "egg-vegetable-fried-rice",
+      "chickpea-cabbage-wraps",
+      "peanut-veggie-noodles"
+    ];
+
+    return dinners.filter(function (dinner) {
+      if (selected.has("vegetarian") && meatAndFishIds.indexOf(dinner.id) !== -1) return false;
+      if (selected.has("pescatarian") && meatIds.indexOf(dinner.id) !== -1) return false;
+      if (selected.has("vegan") && veganIds.indexOf(dinner.id) === -1) return false;
+      if (selected.has("nut-free") && dinner.id === "peanut-veggie-noodles") return false;
+      return true;
+    }).map(function (dinner) {
+      const substitutions = {};
+      if (selected.has("dairy-free") || selected.has("vegan")) {
+        substitutions.Cheddar = "Vegan cheddar";
+        substitutions["Sour cream"] = "Plant-based sour cream";
+        substitutions.Yogurt = "Plant-based yogurt";
+      }
+      if (selected.has("dairy-free")) {
+        substitutions.Cream = "Oat cream";
+        substitutions.Parmesan = "Dairy-free parmesan";
+      }
+      if (selected.has("vegan") && !selected.has("gluten-free")) {
+        substitutions.Ramen = "Vegan ramen";
+      }
+      if (selected.has("gluten-free")) {
+        substitutions.Pasta = "Gluten-free pasta";
+        substitutions.Tortillas = "Corn tortillas";
+        substitutions["Soy sauce"] = "Tamari";
+        substitutions.Ramen = "Rice noodles";
+        substitutions.Bread = "Gluten-free bread";
+      }
+
+      const ingredients = dinner.ingredients
+          .filter(function (ingredient) {
+            return !(selected.has("vegan") && ingredient.name === "Eggs");
+          })
+          .map(function (ingredient) {
+            return {
+              name: substitutions[ingredient.name] || ingredient.name,
+              amount: ingredient.amount,
+              unit: ingredient.unit
+            };
+          });
+      let steps = dinner.steps.slice();
+      let name = dinner.name;
+      let description = dinner.description;
+      if (selected.has("vegan") && dinner.id === "egg-vegetable-fried-rice") {
+        name = "Vegetable fried rice";
+        description = "Rice and frozen vegetables tossed with a little soy sauce.";
+        steps = steps.filter(function (step) {
+          return step.indexOf("Push the rice and vegetables to one side.") !== 0
+              && step.indexOf("Crack the egg into the clear side") !== 0;
+        }).map(function (step) {
+          return step.indexOf("Mix the cooked egg through the rice") === 0
+              ? "Stir the rice and vegetables together, check that the dish is steaming hot, and serve."
+              : step;
+        });
+      }
+      if (selected.has("gluten-free")) {
+        steps = steps.map(function (step) {
+          return step.replace(/soy sauce/gi, "tamari")
+              .replace(/ramen/gi, "rice noodles")
+              .replace(/\bbread\b/gi, "gluten-free bread");
+        });
+      } else if (selected.has("vegan")) {
+        steps = steps.map(function (step) {
+          return step.replace(/ramen/gi, "vegan ramen");
+        });
+      }
+      if (selected.has("dairy-free") || selected.has("vegan")) {
+        description = description.replace(/cheddar/gi, "vegan cheddar")
+            .replace(/sour cream/gi, "plant-based sour cream")
+            .replace(/yogurt/gi, "plant-based yogurt");
+        steps = steps.map(function (step) {
+          return step.replace(/cheddar/gi, "vegan cheddar")
+              .replace(/sour cream/gi, "plant-based sour cream")
+              .replace(/yogurt/gi, "plant-based yogurt");
+        });
+      }
+      if (selected.has("dairy-free")) {
+        description = description.replace(/\bcream\b/gi, "oat cream")
+            .replace(/parmesan/gi, "dairy-free parmesan");
+        steps = steps.map(function (step) {
+          return step.replace(/\bcream\b/gi, "oat cream")
+              .replace(/parmesan/gi, "dairy-free parmesan");
+        });
+      }
+      return Object.assign({}, dinner, {
+        name: name,
+        description: description,
+        ingredients: ingredients,
+        steps: steps
+      });
+    });
+  }
 
   const weekdays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
   const currency = new Intl.NumberFormat("en-CA", { style: "currency", currency: "CAD" });
@@ -375,7 +630,10 @@
     "tuna-pea-pasta": { calories: 470, protein: 28, carbs: 61, fat: 12 },
     "black-bean-quesadillas": { calories: 460, protein: 21, carbs: 55, fat: 17 },
     "peanut-veggie-noodles": { calories: 480, protein: 18, carbs: 69, fat: 16 },
-    "tomato-egg-skillet": { calories: 360, protein: 19, carbs: 43, fat: 12 }
+    "tomato-egg-skillet": { calories: 360, protein: 19, carbs: 43, fat: 12 },
+    "lemon-chicken-broccoli-rice": { calories: 520, protein: 42, carbs: 62, fat: 10 },
+    "creamy-chicken-mushroom-pasta": { calories: 650, protein: 42, carbs: 69, fat: 22 },
+    "beef-broccoli-pepper-skillet": { calories: 580, protein: 32, carbs: 62, fat: 20 }
   };
 
   function getStoreKey(store) {
@@ -402,6 +660,47 @@
     link.rel = "noopener noreferrer";
     link.textContent = "Shop at " + retailer.name;
     return link;
+  }
+
+  function chooseSponsoredOffer(store, chance, offerIndex) {
+    if (chance >= 0.4) return null;
+    const storeKey = getStoreKey(store);
+    if (!storeKey) throw new Error("Missing retailer for sponsored promotion");
+    const offer = sponsoredOffers[offerIndex % sponsoredOffers.length];
+    const packageInfo = packageCatalog[offer.key];
+    if (!packageInfo) throw new Error("Missing package estimate for " + offer.key);
+    const regularPrice = packagePrice(packageInfo, storeKey);
+    return {
+      product: offer.product,
+      storeKey: storeKey,
+      regularPrice: regularPrice,
+      salePrice: Number((regularPrice * (1 - offer.discount / 100)).toFixed(2)),
+      discount: offer.discount
+    };
+  }
+
+  function renderSponsoredPromotion(store) {
+    sponsoredPromotion.replaceChildren();
+    const offer = chooseSponsoredOffer(store, Math.random(), Math.floor(Math.random() * sponsoredOffers.length));
+    sponsoredPromotion.hidden = !offer;
+    if (!offer) return;
+
+    const label = document.createElement("p");
+    label.className = "eyebrow";
+    label.textContent = "Sponsored sample promotion · " + store + " partner concept";
+    const heading = document.createElement("h2");
+    heading.textContent = offer.discount + "% off " + offer.product;
+    const description = document.createElement("p");
+    description.className = "sponsored-price";
+    description.textContent = currency.format(offer.salePrice) + " (sample sale price; regular estimate "
+        + currency.format(offer.regularPrice) + ")";
+    const disclaimer = document.createElement("p");
+    disclaimer.className = "muted";
+    disclaimer.textContent = "Fictional promotion for this prototype; " + store
+        + " has not sponsored or verified this offer. Confirm real prices with the store.";
+    const productLink = makeStoreLink(offer.product, offer.storeKey);
+    productLink.textContent = "Search " + store + " for " + offer.product;
+    sponsoredPromotion.append(label, heading, description, disclaimer, productLink);
   }
 
   function packagePrice(packageInfo, storeKey) {
@@ -450,22 +749,47 @@
     return { items: items, total: Number(total.toFixed(2)) };
   }
 
-  function findLowestCostPlan(householdSize, store, pantryItems) {
+  function findBestPlan(householdSize, store, pantryItems, budget, availableDinners) {
     const storeKey = getStoreKey(store);
+    const candidates = (availableDinners || dinners).slice();
     let bestPlan = null;
+    if (candidates.length === 0) return null;
+    while (candidates.length < weekdays.length) {
+      candidates.push(candidates[candidates.length % (availableDinners || dinners).length]);
+    }
 
     function chooseDinners(startIndex, selectedDinners) {
         if (selectedDinners.length === weekdays.length) {
           const cart = buildShoppingCart(selectedDinners, householdSize, storeKey, pantryItems);
-          if (!bestPlan || cart.total < bestPlan.cart.total) {
-            bestPlan = { dinners: selectedDinners.slice(), cart: cart };
-        }
+          const complexity = selectedDinners.reduce(function (total, dinner) {
+            return total + dinner.ingredients.length;
+          }, 0);
+          const candidate = { dinners: selectedDinners.slice(), cart: cart, complexity: complexity };
+          if (!bestPlan) {
+            bestPlan = candidate;
+          } else if (Number.isFinite(budget)) {
+            const candidateFits = cart.total <= budget;
+            const bestFits = bestPlan.cart.total <= budget;
+            if ((candidateFits && !bestFits)
+                || (candidateFits === bestFits
+                  && (candidateFits
+                    ? cart.total > bestPlan.cart.total
+                    : cart.total < bestPlan.cart.total))
+                || (candidateFits === bestFits
+                  && cart.total === bestPlan.cart.total
+                  && complexity > bestPlan.complexity)) {
+              bestPlan = candidate;
+            }
+          } else if (cart.total < bestPlan.cart.total
+              || (cart.total === bestPlan.cart.total && complexity > bestPlan.complexity)) {
+            bestPlan = candidate;
+          }
           return;
         }
 
         const remaining = weekdays.length - selectedDinners.length;
-        for (let index = startIndex; index <= dinners.length - remaining; index += 1) {
-          selectedDinners.push(dinners[index]);
+        for (let index = startIndex; index <= candidates.length - remaining; index += 1) {
+          selectedDinners.push(candidates[index]);
           chooseDinners(index + 1, selectedDinners);
           selectedDinners.pop();
       }
@@ -475,10 +799,11 @@
     return bestPlan;
   }
 
-  function renderMealPlan(budget, householdSize, store) {
+  function renderMealPlan(budget, householdSize, store, availableDinners, restrictions) {
     const ownedItems = premiumActive ? pantryItems : [];
-    const plan = findLowestCostPlan(householdSize, store, ownedItems);
+    const plan = findBestPlan(householdSize, store, ownedItems, budget, availableDinners);
     const storeKey = getStoreKey(store);
+    activePlanDinners = availableDinners;
 
     mealPlan.replaceChildren();
     groceryList.replaceChildren();
@@ -542,14 +867,28 @@
     assessment.className = plan.cart.total > budget ? "budget-warning" : "muted";
     assessment.textContent = plan.cart.total > budget
         ? "This is the lowest-checkout-cost plan from our dinner options, but it exceeds your budget."
-        : "The estimated grocery checkout is within your budget.";
+        : "This is the closest estimated plan we can build without going over your budget.";
     const caveat = document.createElement("p");
     caveat.className = "muted";
     caveat.textContent = "Uses full packages, so leftovers may remain. Prices are rough package estimates based on comparable products, not live quotes. Local prices, stock, and promotions can change; confirm the current price on the linked store page.";
     const summaryItems = [summary, assessment];
+    if (restrictions.length) {
+      const dietaryNote = document.createElement("p");
+      dietaryNote.className = "muted";
+      dietaryNote.textContent = "Preferences applied: " + restrictions.join(", ")
+          + ". Check product labels and cross-contact warnings; this prototype cannot guarantee allergy safety.";
+      summaryItems.push(dietaryNote);
+    }
+    if (availableDinners.length < weekdays.length) {
+      const varietyNote = document.createElement("p");
+      varietyNote.className = "muted";
+      varietyNote.textContent = "Some dinners repeat because the sample menu has only "
+          + availableDinners.length + " recipes matching your selections.";
+      summaryItems.push(varietyNote);
+    }
     if (premiumActive) {
-      const sobeys = findLowestCostPlan(householdSize, "Sobeys", ownedItems);
-      const superstore = findLowestCostPlan(householdSize, "Superstore", ownedItems);
+      const sobeys = findBestPlan(householdSize, "Sobeys", ownedItems, undefined, availableDinners);
+      const superstore = findBestPlan(householdSize, "Superstore", ownedItems, undefined, availableDinners);
       const dealScout = document.createElement("p");
       dealScout.className = "muted";
       dealScout.textContent = "Deal scout estimate (sample prices, not live flyers): Sobeys "
@@ -576,6 +915,7 @@
     storeNote.textContent = premiumActive && ownedItems.length
         ? "Pantry items deducted: " + ownedItems.join(", ") + ". Remaining quantities use full packages."
         : "Package quantities are for the full shopping trip; unused amounts may remain for another week.";
+    renderSponsoredPromotion(store);
     planResults.hidden = false;
   }
 
@@ -594,7 +934,10 @@
   }
 
   function renderRecipeDetail(recipeId, recipeSource) {
-    const dinner = dinners.find(function (item) { return item.id === recipeId; });
+    const recipeOptions = recipeSource === "plan" && activePlanDinners
+        ? activePlanDinners
+        : dinners;
+    const dinner = recipeOptions.find(function (item) { return item.id === recipeId; });
     recipeIngredients.replaceChildren();
     recipeSteps.replaceChildren();
     recipeBack.href = recipeSource === "helper" ? "#meal-helper" : "#explore";
@@ -789,6 +1132,8 @@
 
   function applyPremiumState() {
     document.body.classList.toggle("golden-ladle", premiumActive);
+    leftDemoAd.parentElement.hidden = premiumActive;
+    rightDemoAd.parentElement.hidden = premiumActive;
     premiumTools.hidden = !premiumActive;
     premiumDashboard.hidden = !premiumActive;
     premiumSignInButton.hidden = premiumActive;
@@ -864,10 +1209,17 @@
       storage.set("pantryItems", pantryItems);
     }
 
+    const restrictions = Array.prototype.map.call(
+      plannerForm.querySelectorAll('input[name="dietaryRestrictions"]:checked'),
+      function (input) { return input.value; }
+    );
+    const availableDinners = getDietaryDinners(restrictions);
     renderMealPlan(
       Number(document.getElementById("weekly-budget").value),
       Number(document.getElementById("household-size").value),
-      store
+      store,
+      availableDinners,
+      restrictions
     );
   });
 
@@ -875,6 +1227,7 @@
   // 5. Start up.
   // ----------------------------------------------------------
   applyPremiumState();
+  renderDemoAds();
   renderListings();
   showView();
 })();

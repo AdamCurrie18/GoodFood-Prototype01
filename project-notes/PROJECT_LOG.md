@@ -58,8 +58,8 @@ and the about us page you can make up
 - **Key prompts we gave Copilot** (paste the important ones):
   1. Add links next to every recommended ingredient that open the item on the selected store's website, and make prices realistic and close to the listed prices.
 - **What worked:** Grocery-list and recipe ingredients now link to matching Sobeys/Voilà or Real Canadian Superstore searches. Package estimates were aligned to comparable online listings where accessible.
-- **What broke, and how we fixed it:** Store prices and availability vary by location and change over time; prices remain estimates, and users are told to confirm the linked listing before ordering.
-- **Committed?** no. **Suggested commit message:** Add retailer links and realistic grocery price estimates
+- **What broke, and how we fixed it:** it couldn't track live prices, no real way to fix, so I just made sure it was clear they were estimates.
+- **Committed?** yes, Added retailer links and realistic grocery price estimates
 
 ### Session 6 — November 26th — driver: Adam
 
@@ -67,8 +67,35 @@ and the about us page you can make up
 - **Key prompts we gave Copilot** (paste the important ones):
   1. Add a meal helper where users enter ingredients and get matching recipes with detailed step-by-step instructions and a YouTube tutorial link. Reset Golden Ladle to locked each time the site launches, and require sign-in from its page to unlock it.
 - **What worked:** The helper ranks the existing recipes by ingredients on hand and shows missing ingredients, detailed instructions, and a YouTube tutorial search link. Golden Ladle unlocks only for the current visit.
-- **What broke, and how we fixed it:** This static prototype cannot authenticate accounts. The sign-in is a demo button that collects no credentials; a real service would need secure account and session infrastructure.
-- **Committed?** no. **Suggested commit message:** Add ingredient-based meal helper and session-only premium access
+- **What broke, and how we fixed it:** the links often didn't work, i tweaked it so it would at least take user to the youtube page with similar meals auto searched.
+- **Committed?** yes, Added ingredient-based meal helper and session-only premium access
+
+### Session 7 — November 26th — driver: Adam
+
+- **match meal recommendations to the weekly budget:**
+- **Key prompts we gave Copilot** (paste the important ones):
+  1. When users set a higher budget, recommend a plan that gets closer to it with more ingredients and more complex meals.
+- **What worked:** The planner now selects the highest estimated grocery total that stays within budget, favors more ingredient-rich plans when totals tie, and includes several more substantial dinner options.
+- **What broke, and how we fixed it:** it would at time exceed the budget, i switched it so it never would
+- **Committed?** yes, Match dinner plans to the weekly budget
+
+### Session 8 — November 26th — driver: Adam
+
+- **add nonintrusive side advertisements:**
+- **Key prompts we gave Copilot** (paste the important ones):
+  1. Add fake ads for random products on the left and right of the screen without interrupting the app, like ads on a free website.
+- **What worked:** Two fictional sample ads are randomly selected on page load and placed in side rails on wide screens. They are labeled as demo ads and hidden on smaller screens; they do not cover content or interrupt navigation.
+- **What broke, and how we fixed it:** the ads didn't come with images, so i had AI make little drawings of the imaginary product.
+- **Committed?** yes, Add nonintrusive sample side advertisements
+
+### Session 9 — November 26th — driver: Adam
+
+- **add dietary preferences to meal planning:**
+- **Key prompts we gave Copilot** (paste the important ones):
+  1. Add dietary options such as vegetarian, vegan, and gluten-free, and adjust recommended meals and ingredients to match.
+- **What worked:** The planner now filters meals for vegetarian, vegan, pescatarian, nut-free, and other selections, and substitutes gluten-free, dairy-free, and vegan ingredients where supported.
+- **What broke, and how we fixed it:** it initially offered very few options, i had it add some
+- **Committed?** yes, Add dietary-aware meal planning
 
 ## Things that broke (running list)
 

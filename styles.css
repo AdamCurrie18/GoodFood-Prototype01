@@ -78,6 +78,46 @@ nav a {
 }
 nav a[aria-current="page"] { color: var(--brand); }
 
+/* ---------- Sample ad rails ---------- */
+.ad-rail { display: none; }
+.demo-ad {
+  width: min(180px, 100%);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--surface);
+  box-shadow: 0 8px 24px rgba(23, 58, 99, 0.08);
+}
+.demo-ad-art {
+  display: block;
+  width: 100%;
+  height: 104px;
+  padding: 8px;
+  object-fit: contain;
+}
+.demo-ad-art.herb { background: linear-gradient(135deg, #42764d, #a4c77c); }
+.demo-ad-art.chopper { background: linear-gradient(135deg, #476d9e, #95b9d1); }
+.demo-ad-art.containers { background: linear-gradient(135deg, #a56c4b, #e0b48d); }
+.demo-ad-art.pan { background: linear-gradient(135deg, #5c5b67, #aaa7b5); }
+.demo-ad-art.produce { background: linear-gradient(135deg, #b45c43, #e4b85c); }
+.demo-ad-art.soap { background: linear-gradient(135deg, #4a9287, #a5d7c6); }
+.demo-ad-copy { padding: 14px; }
+.demo-ad-label {
+  display: inline-block;
+  margin-bottom: 8px;
+  padding: 2px 7px;
+  border-radius: 999px;
+  background: var(--brand-soft);
+  color: var(--brand-dark);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.demo-ad-brand { margin: 0 0 3px; color: var(--muted); font-size: 0.76rem; }
+.demo-ad h2 { margin: 0 0 6px; font-size: 1rem; line-height: 1.25; }
+.demo-ad p:last-child { margin: 0; color: var(--muted); font-size: 0.82rem; }
+
 /* ---------- Page layout ---------- */
 main {
   max-width: 1000px;
@@ -334,6 +374,34 @@ h1 { line-height: 1.2; }
   background: var(--surface);
   font: inherit;
 }
+.dietary-preferences {
+  grid-column: 1 / -1;
+  min-width: 0;
+  margin: 0;
+  padding: 14px 16px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+.dietary-preferences legend { padding: 0 6px; font-weight: 700; }
+.dietary-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+}
+.dietary-option {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 32px;
+  font-weight: 500;
+}
+.dietary-option input {
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  accent-color: var(--brand);
+}
+.dietary-preferences p { margin: 8px 0 0; font-size: 0.88rem; }
 .premium-tools {
   grid-column: 1 / -1;
   display: grid;
@@ -460,6 +528,21 @@ h1 { line-height: 1.2; }
 }
 .grocery-purchase { color: var(--muted); text-align: right; }
 .grocery-cost { font-weight: 600; text-align: right; white-space: nowrap; }
+.sponsored-promotion {
+  margin-top: 20px;
+  padding: 18px 20px;
+  border: 1px solid #e8c35a;
+  border-left: 5px solid #d5a92f;
+  border-radius: var(--radius);
+  background: #fff8df;
+}
+.sponsored-promotion .eyebrow,
+.sponsored-promotion h2,
+.sponsored-promotion p { margin: 0 0 8px; }
+.sponsored-promotion .eyebrow { color: #805900; }
+.sponsored-promotion h2 { font-size: 1.15rem; }
+.sponsored-promotion .sponsored-price { font-weight: 700; }
+.sponsored-promotion .muted { font-size: 0.9rem; }
 .recipe-back {
   display: inline-block;
   margin-bottom: 12px;
@@ -566,6 +649,22 @@ h1 { line-height: 1.2; }
   gap: 16px;
 }
 .empty { color: var(--muted); font-style: italic; }
+
+@media (min-width: 1440px) {
+  body { display: grid; grid-template-columns: minmax(160px, 1fr) minmax(0, 1000px) minmax(160px, 1fr); }
+  .site-header { grid-column: 1 / -1; grid-row: 1; }
+  .ad-rail {
+    display: grid;
+    grid-row: 2;
+    align-content: start;
+    justify-items: center;
+    padding: 32px 16px 0;
+  }
+  .ad-rail-left { grid-column: 1; }
+  .ad-rail-right { grid-column: 3; }
+  main { grid-column: 2; grid-row: 2; width: 100%; }
+  .site-footer { grid-column: 1 / -1; grid-row: 3; }
+}
 
 /* ---------- Golden Ladle ---------- */
 .premium-offer {

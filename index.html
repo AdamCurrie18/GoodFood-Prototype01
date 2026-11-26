@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>GoodFood</title>
   <meta name="description" content="GoodFood helps budget-conscious cooks plan affordable weekly dinners and grocery lists.">
-  <link rel="stylesheet" href="styles.css?v=meal-helper-1">
+  <link rel="stylesheet" href="styles.css?v=dietary-planning-1">
 </head>
 <body>
 
@@ -26,6 +26,13 @@
       <a href="#premium">Golden Ladle</a>
     </nav>
   </header>
+
+  <aside class="ad-rail ad-rail-left" aria-label="Sample advertisements">
+    <article class="demo-ad" id="left-demo-ad"></article>
+  </aside>
+  <aside class="ad-rail ad-rail-right" aria-label="Sample advertisements">
+    <article class="demo-ad" id="right-demo-ad"></article>
+  </aside>
 
   <main>
 
@@ -83,7 +90,7 @@
       <div class="page-heading">
         <p class="eyebrow">Get started</p>
         <h1>Let’s plan something delicious.</h1>
-        <p class="lead">Share a few details to get a week of affordable dinners and a grocery list.</p>
+        <p class="lead">Share your budget, household size, and store to get a week of dinners and a grocery list. The plan gets closer to your budget as richer, more ingredient-filled recipes become affordable.</p>
       </div>
 
       <form class="planner-form" id="planner-form">
@@ -105,6 +112,18 @@
             <option value="Real Canadian Superstore">Real Canadian Superstore</option>
           </select>
         </div>
+        <fieldset class="dietary-preferences" aria-describedby="dietary-note">
+          <legend>Dietary preferences and restrictions</legend>
+          <div class="dietary-options">
+            <label class="dietary-option"><input type="checkbox" name="dietaryRestrictions" value="vegetarian"> Vegetarian</label>
+            <label class="dietary-option"><input type="checkbox" name="dietaryRestrictions" value="vegan"> Vegan</label>
+            <label class="dietary-option"><input type="checkbox" name="dietaryRestrictions" value="gluten-free"> Gluten-free</label>
+            <label class="dietary-option"><input type="checkbox" name="dietaryRestrictions" value="dairy-free"> Dairy-free</label>
+            <label class="dietary-option"><input type="checkbox" name="dietaryRestrictions" value="nut-free"> Nut-free</label>
+            <label class="dietary-option"><input type="checkbox" name="dietaryRestrictions" value="pescatarian"> Pescatarian</label>
+          </div>
+          <p class="muted" id="dietary-note">Select all that apply. This prototype uses sample ingredients; check product labels and cross-contact warnings, especially for allergies and gluten.</p>
+        </fieldset>
         <div class="premium-tools" id="premium-tools" hidden>
           <label for="pantry-items">Pantry inventory (items you already have)</label>
           <textarea id="pantry-items" rows="2" placeholder="e.g. Rice, Eggs, Canned tomatoes"></textarea>
@@ -133,6 +152,7 @@
             <ul class="grocery-list" id="grocery-list"></ul>
           </section>
         </div>
+        <aside class="sponsored-promotion" id="sponsored-promotion" aria-live="polite" hidden></aside>
       </section>
 
       <label class="search" hidden>
@@ -301,6 +321,6 @@
 
   <!-- Scripts load in this order: data first, then the code that uses it. -->
   <script src="data.js?v=meal-helper-1"></script>
-  <script src="app.js?v=meal-helper-1"></script>
+  <script src="app.js?v=dietary-planning-1"></script>
 </body>
 </html>

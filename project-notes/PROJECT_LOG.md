@@ -4,7 +4,7 @@ Keep this up to date as you go — a few lines per work session is enough. It's 
 
 **Name:** Adam
 **Startup:** GoodFood
-**Live site link:** 
+**Live site link:** http://127.0.0.1:8000/ 
 
 ## Work sessions
 
@@ -98,20 +98,37 @@ and the about us page you can make up
 
 ## Things that broke (running list)
 
-| Date | What went wrong | What we tried | What finally fixed it |
-|---|---|---|---|
-| | | | |
+| date | What broke  | what i tried | What finally fixed it |
+
+|Nov 23|the estimated prices were very cheap and unrealistic|I tried asking it to be more realistic, that didn't work|I had ChatGPT generate a list of essential groceries and their approximate prices at sobeys and superstore respectively, I then gave that list to copilot and had it base it's prices off that.|
+
+|Nov 25|meal plans were remaining cheap even if budget was raised|tried asking it to cater the meal plan to the amount of money provided |that worked |
+
+| Nov 25 | the ads I wanted looked cheap and had no images  | asked it to add little illustrations | That fixed it |
+
+| Nov 25 | once the "golden ladle" was unlocked, it remained so everytime the user joined.  | i made it so users have to sign in to the golden ladle | that worked.
 
 ## What a real version would need
 
 Everything we wanted but faked or left out — real logins, a real database, payments, security, moderation, an app, staff, etc. For each one, say **why** it's needed and roughly **how hard or expensive** you think it would be.
 
 | Feature we faked or skipped | Why a real company would need it | How hard / expensive? |
-|---|---|---|
-| | | |
+
+| Real accounts and sign-in | To verify users, securely save profiles, prevent subscription abuse, and let members access data across devices | Medium; several thousand dollars for authentication, account recovery, and privacy-compliance work |
+| Persistent user database | To store household budgets, meal histories, pantry items, favourites, nutrition targets, and subscriptions reliably | Medium to hard; roughly $5,000-$20,000 to build and operate a secure initial system |
+| Real payments and recurring billing | To charge the $3 subscription, issue refunds, handle failed payments, and manage cancellations | Medium; setup is manageable, but ongoing fees and taxes would add 3-5% of revenue plus subscriptions |
+| Live retailer inventory and grocery prices | To give accurate prices and availability instead of estimates and avoid directing users to incorrect or missing items | Hard and expensive; requires retailer agreements or reliable APIs, plus regular syncing and maintenance |
+| Security and privacy controls | To protect passwords, payment details, personal goals, pantry data, and account information against unauthorized access | Medium to hard; a proper security audit and encrypted infrastructure could cost $10,000-$30,000 or more |
+| Real dietary and allergy safeguards | To provide reliable substitutions and clear allergen warnings for users with medical dietary needs | Hard; requires nutrition expertise, careful data review, warnings, and liability/legal guidance |
+| Production customer support and moderation | To handle incorrect results, retailer complaints, account problems, unsafe advice, and reports from customers | Medium; may require a small support team and policies before the app receives significant traffic |
+| Mobile app and notifications | To make planning convenient on the go and send weekly reminders, shopping updates, and grocery-deal alerts | Hard; a polished app could cost $20,000-$100,000+, depending on platforms and features |
+| Staff, partnerships, and operations | To manage the business, maintain data, negotiate retailer relationships, and support future marketing and growth | Hard and expensive; a small team could require $100,000+ per year before significant revenue |
 
 ## Reflection (fill in at the end)
 
 1. What surprised you most about building software with AI?
+How quickly it can create basically anything I imagined is very impressive. It did not need especially detailed prompts to infer what I meant, and it used it's own intuition to create things the app could use.
 2. Which parts were easy, and which were hard? Why do you think that is?
+The creation of the app was easy, because if something didn't work it was simple to go and fix it with Copilot. The part that was harder was simply understanding how github coding functions and the orginization of everything. However after creating this project I feel way more confident in my understanding of the software.
 3. If a competitor had the same AI tool, how long would it take them to copy your site?
+I do not think it would take them very long at all. i think with the creation of this sort of vibe coding the power of a website or app will be in the creativity of the idea. succesful sites / apps will need to rely on creative ideas, great networking and some luck to be the first in and reap the benifits.

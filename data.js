@@ -13,7 +13,7 @@
 const STARTUP = {
   name: "GoodFood",
   tagline: "Good food should fit your life and your budget.",
-  pitch: "GoodFood helps people following a budget turn the ingredients they already have into delicious, healthy meals."
+  pitch: "GoodFood helps people plan affordable dinners and grocery trips that work for their household."
 };
 
 const LISTINGS = [

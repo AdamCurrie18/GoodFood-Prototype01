@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>GoodFood</title>
-  <meta name="description" content="GoodFood helps budget-conscious cooks find affordable, healthy meals using ingredients they already have.">
-  <link rel="stylesheet" href="styles.css">
+  <meta name="description" content="GoodFood helps budget-conscious cooks plan affordable weekly dinners and grocery lists.">
+  <link rel="stylesheet" href="styles.css?v=meal-helper-1">
 </head>
 <body>
 
@@ -21,7 +21,9 @@
     <nav aria-label="Main">
       <a href="#home">Home</a>
       <a href="#explore">Get started</a>
+      <a href="#meal-helper">Meal helper</a>
       <a href="#about">About</a>
+      <a href="#premium">Golden Ladle</a>
     </nav>
   </header>
 
@@ -36,7 +38,7 @@
           <p class="eyebrow">Affordable healthy eating</p>
           <h1 id="tagline">Good food should fit your life and your budget.</h1>
           <p class="lead" id="pitch">
-            GoodFood helps people following a budget turn the ingredients they already have into delicious, healthy meals.
+            GoodFood helps people plan affordable dinners and grocery trips that work for their household.
           </p>
           <a class="button" href="#explore">Find my first meal</a>
         </div>
@@ -58,13 +60,13 @@
       <div class="steps">
         <div class="card">
           <span class="step-number">1</span>
-          <h2>Add what you have</h2>
-          <p>Enter your available ingredients and set a meal budget.</p>
+          <h2>Set your budget</h2>
+          <p>Tell us your weekly budget, household size, and preferred grocery store.</p>
         </div>
         <div class="card">
           <span class="step-number">2</span>
-          <h2>Find a meal</h2>
-          <p>Get affordable recipe ideas that match your ingredients and tastes.</p>
+          <h2>Get your weekly plan</h2>
+          <p>Get seven budget-friendly dinner ideas and one combined grocery list.</p>
         </div>
         <div class="card">
           <span class="step-number">3</span>
@@ -75,20 +77,63 @@
     </section>
 
     <!-- =======================================================
-         VIEW 2: GET STARTED — placeholder for the prototype.
+         VIEW 2: GET STARTED — create a budget-friendly weekly dinner plan.
          ======================================================= -->
     <section id="explore" data-view hidden>
       <div class="page-heading">
         <p class="eyebrow">Get started</p>
         <h1>Let’s plan something delicious.</h1>
-        <p class="lead">Your personalized meal finder is coming soon.</p>
+        <p class="lead">Share a few details to get a week of affordable dinners and a grocery list.</p>
       </div>
 
-      <div class="placeholder-panel" aria-label="Meal finder coming soon">
-        <span class="placeholder-icon" aria-hidden="true">&#127858;</span>
-        <h2>Good things are cooking</h2>
-        <p>Add your ingredients and budget to find an affordable meal.</p>
-      </div>
+      <form class="planner-form" id="planner-form">
+        <div class="form-field">
+          <label for="weekly-budget">Weekly dinner budget</label>
+          <div class="input-with-prefix">
+            <span aria-hidden="true">$</span>
+            <input id="weekly-budget" name="budget" type="number" min="1" step="0.01" placeholder="75.00" required>
+          </div>
+        </div>
+        <div class="form-field">
+          <label for="household-size">Mouths to feed</label>
+          <input id="household-size" name="householdSize" type="number" min="1" max="20" step="1" value="2" required>
+        </div>
+        <div class="form-field">
+          <label for="grocery-store">Preferred grocery store</label>
+          <select id="grocery-store" name="store">
+            <option value="Sobeys">Sobeys (Voilà)</option>
+            <option value="Real Canadian Superstore">Real Canadian Superstore</option>
+          </select>
+        </div>
+        <div class="premium-tools" id="premium-tools" hidden>
+          <label for="pantry-items">Pantry inventory (items you already have)</label>
+          <textarea id="pantry-items" rows="2" placeholder="e.g. Rice, Eggs, Canned tomatoes"></textarea>
+          <p class="muted">Separate full-stock items with commas. Use the grocery-list names; owned items are removed from the shopping total.</p>
+        </div>
+        <button class="button planner-submit" type="submit">Build my meal plan</button>
+      </form>
+
+      <section class="plan-results" id="plan-results" aria-live="polite" hidden>
+        <div class="plan-summary" id="plan-summary"></div>
+        <div class="plan-columns">
+          <section class="plan-panel" aria-labelledby="meal-plan-title">
+            <h2 id="meal-plan-title">Your dinners</h2>
+            <div class="table-scroll">
+              <table class="meal-table">
+                <thead>
+                  <tr><th scope="col">Day</th><th scope="col">Dinner</th><th scope="col">Recipe</th></tr>
+                </thead>
+                <tbody id="meal-plan"></tbody>
+              </table>
+            </div>
+          </section>
+          <section class="plan-panel" aria-labelledby="grocery-list-title">
+            <h2 id="grocery-list-title">Grocery list</h2>
+            <p class="store-note" id="store-note"></p>
+            <ul class="grocery-list" id="grocery-list"></ul>
+          </section>
+        </div>
+      </section>
 
       <label class="search" hidden>
         <span>Search</span>
@@ -97,6 +142,50 @@
       <p class="muted" id="saved-count" hidden></p>
       <div class="grid" id="listing-grid" hidden></div>
       <p class="empty" id="empty-message" hidden>Nothing matches your search.</p>
+    </section>
+
+    <section id="meal-helper" data-view hidden>
+      <div class="page-heading">
+        <p class="eyebrow">Meal helper</p>
+        <h1>What’s in your kitchen?</h1>
+        <p class="lead">List ingredients you have, separated by commas. We’ll find the best matching recipes and show what else you need.</p>
+      </div>
+      <form class="helper-form" id="ingredient-helper-form">
+        <label for="ingredient-input">Ingredients on hand</label>
+        <textarea id="ingredient-input" rows="3" placeholder="e.g. rice, eggs, frozen vegetables" required></textarea>
+        <p class="muted">Try common ingredients such as rice, eggs, pasta, beans, tomatoes, or tortillas.</p>
+        <button class="button" type="submit">Find recipes</button>
+      </form>
+      <p class="helper-status muted" id="helper-status" aria-live="polite"></p>
+      <div class="helper-results" id="helper-results" aria-live="polite"></div>
+    </section>
+
+    <section id="recipe" data-view hidden>
+      <a class="recipe-back" id="recipe-back" href="#explore">&larr; Back to your meal plan</a>
+      <div class="page-heading recipe-heading">
+        <p class="eyebrow">GoodFood recipe</p>
+        <h1 id="recipe-title">Recipe</h1>
+        <p class="lead" id="recipe-description"></p>
+      </div>
+
+      <article class="recipe-detail">
+        <div class="recipe-overview">
+          <img class="recipe-detail-image" id="recipe-image" alt="">
+          <p class="muted" id="recipe-servings"></p>
+        </div>
+        <p class="recipe-nutrition muted" id="recipe-nutrition" hidden></p>
+        <section aria-labelledby="recipe-ingredients-title">
+          <h2 id="recipe-ingredients-title">Ingredients</h2>
+          <ul id="recipe-ingredients"></ul>
+        </section>
+        <section aria-labelledby="recipe-steps-title">
+          <h2 id="recipe-steps-title">Step by step</h2>
+          <ol id="recipe-steps"></ol>
+        </section>
+        <a class="button" id="recipe-video-link" href="#" target="_blank" rel="noopener noreferrer">
+          Find a YouTube tutorial
+        </a>
+      </article>
     </section>
 
     <!-- =======================================================
@@ -112,7 +201,7 @@
         <article class="about-story">
           <h2>Why we started GoodFood</h2>
           <p>GoodFood began when a group of students kept having the same problem: full cupboards, busy schedules, and no idea what to cook without overspending.</p>
-          <p>We imagined a friendly meal guide that puts a budget, available ingredients, and healthy choices together in one place.</p>
+          <p>We imagined a friendly meal guide that brings budget-friendly weekly dinners and grocery planning together in one place.</p>
         </article>
         <aside class="mission-card">
           <span aria-hidden="true">&#10084;</span>
@@ -137,15 +226,81 @@
       </div>
     </section>
 
+    <section id="premium" data-view hidden>
+      <div class="page-heading">
+        <p class="eyebrow">GoodFood Premium</p>
+        <h1>Meet the Golden Ladle.</h1>
+        <p class="lead">A little extra help making every grocery dollar and ingredient go further.</p>
+      </div>
+
+      <div class="premium-offer">
+        <div>
+          <p class="eyebrow">One simple subscription</p>
+          <p class="premium-price">$10 <span>CAD / month</span></p>
+          <p>Upgrade your meal planning with smarter shopping, pantry tracking, and nutrition goals.</p>
+        </div>
+        <div class="premium-action">
+          <button class="button" id="premium-sign-in" type="button">Sign in to Golden Ladle</button>
+          <p class="muted" id="premium-status" aria-live="polite">Sign in to unlock Golden Ladle for this visit.</p>
+          <p class="prototype-note">Student prototype: sign-in is simulated for this visit only. No account, password, or payment is collected.</p>
+        </div>
+      </div>
+
+      <div class="premium-features">
+        <article class="card">
+          <h2>Waste-Not Week</h2>
+          <p>Build dinners that reuse ingredients and full packages across the week.</p>
+        </article>
+        <article class="card">
+          <h2>Macro compass</h2>
+          <p>Set personal calorie, protein, carbohydrate, and fat targets; see rough meal estimates.</p>
+        </article>
+        <article class="card">
+          <h2>Deal scout</h2>
+          <p>Compare estimated baskets across stores using available grocery prices.</p>
+        </article>
+        <article class="card">
+          <h2>Pantry keeper</h2>
+          <p>Mark items you already own so they come off your shopping list and checkout estimate.</p>
+        </article>
+      </div>
+
+      <section class="premium-dashboard" id="premium-dashboard" hidden aria-labelledby="premium-dashboard-title">
+        <h2 id="premium-dashboard-title">Your Golden Ladle tools</h2>
+        <p class="muted">Sample targets are prefilled; edit them to match your goals. Recipe nutrition is approximate and for planning only.</p>
+        <form class="nutrition-form" id="nutrition-target-form">
+          <div class="form-field">
+            <label for="target-calories">Calories per day</label>
+            <input id="target-calories" type="number" min="1" step="1" required>
+          </div>
+          <div class="form-field">
+            <label for="target-protein">Protein (g/day)</label>
+            <input id="target-protein" type="number" min="1" step="1" required>
+          </div>
+          <div class="form-field">
+            <label for="target-carbs">Carbohydrates (g/day)</label>
+            <input id="target-carbs" type="number" min="1" step="1" required>
+          </div>
+          <div class="form-field">
+            <label for="target-fat">Fat (g/day)</label>
+            <input id="target-fat" type="number" min="1" step="1" required>
+          </div>
+          <button class="button" type="submit">Save daily goals</button>
+          <p class="muted" id="target-status" aria-live="polite"></p>
+        </form>
+        <p class="prototype-note">Store prices are sample estimates, not live weekly flyers. A real deal service would need current retailer data.</p>
+      </section>
+    </section>
+
   </main>
 
   <!-- Keep this footer. Your site must say it is a student project. -->
   <footer class="site-footer">
-    <p>Student prototype for BSAD 281 at St. Francis Xavier University. Not a real company — all data is fictional.</p>
+    <p>Student prototype for BSAD 281 at St. Francis Xavier University. Not a real company — grocery prices are estimates, not live store prices. Check the linked store listings for current local prices.</p>
   </footer>
 
   <!-- Scripts load in this order: data first, then the code that uses it. -->
-  <script src="data.js"></script>
-  <script src="app.js"></script>
+  <script src="data.js?v=meal-helper-1"></script>
+  <script src="app.js?v=meal-helper-1"></script>
 </body>
 </html>

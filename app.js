@@ -218,7 +218,9 @@
     "Plant-based sour cream|ml": { size: 340, label: "340 ml tub", prices: { sobeys: 5.49, superstore: 4.99 } },
     "Plant-based yogurt|ml": { size: 750, label: "750 ml tub", prices: { sobeys: 6.49, superstore: 5.99 } },
     "Oat cream|ml": { size: 473, label: "473 ml carton", prices: { sobeys: 4.49, superstore: 3.99 } },
-    "Dairy-free parmesan|g": { size: 200, label: "200 g package", prices: { sobeys: 7.49, superstore: 6.99 } }
+    "Dairy-free parmesan|g": { size: 200, label: "200 g package", prices: { sobeys: 7.49, superstore: 6.99 } },
+    "Frozen cauliflower|g": { size: 750, label: "750 g bag", prices: { sobeys: 4.49, superstore: 3.79 } },
+    "Salmon fillet|g": { size: 400, label: "400 g package", prices: { sobeys: 12.99, superstore: 10.99 } }
   };
 
   const sponsoredOffers = [
@@ -500,6 +502,115 @@
         { name: "Onion", amount: 0.1, unit: "each" },
         { name: "Soy sauce", amount: 15, unit: "ml" }
       ]
+    },
+    {
+      id: "chicken-fried-rice",
+      name: "Chicken and vegetable fried rice",
+      description: "A hearty skillet of chicken, rice, egg, and mixed vegetables with a savory soy finish.",
+      imageColors: ["#e8c952", "#75a05b", "#c78149"],
+      steps: [
+        "For best texture, use cold refrigerated rice. If cooking it now, spread it in a thin layer on a tray and chill it in the refrigerator while you prepare the other ingredients.",
+        "Cut the chicken into small, even pieces. Cook it in a large non-stick pan over medium-high heat, stirring until the thickest pieces reach 74 C (165 F). Transfer it to a clean plate.",
+        "Add the frozen vegetables and a splash of water to the pan. Cover and cook until hot and tender, then stir in the minced garlic.",
+        "Push the vegetables to one side. Crack the egg into the clear space and scramble until fully cooked with no runny egg remaining.",
+        "Add the cooled rice and cooked chicken. Stir-fry until everything is steaming hot, then add the soy sauce and toss to coat.",
+        "Serve right away. Refrigerate leftovers promptly in a shallow container."
+      ],
+      ingredients: [
+        { name: "Chicken breast", amount: 125, unit: "g" },
+        { name: "Rice", amount: 75, unit: "g" },
+        { name: "Eggs", amount: 1, unit: "each" },
+        { name: "Frozen mixed vegetables", amount: 75, unit: "g" },
+        { name: "Soy sauce", amount: 15, unit: "ml" },
+        { name: "Garlic", amount: 0.5, unit: "clove" }
+      ]
+    },
+    {
+      id: "chickpea-cauliflower-curry-rice",
+      name: "Chickpea and cauliflower curry with rice",
+      description: "A warmly spiced tomato curry with chickpeas and cauliflower served over rice.",
+      imageColors: ["#c87642", "#e0b84d", "#709956"],
+      steps: [
+        "Rinse the rice and cook it according to the package directions.",
+        "Finely chop the onion and mince the garlic. Add them to a deep pan over medium heat with a splash of water and cook until softened.",
+        "Stir in the curry powder and cook for about 30 seconds, then add the cauliflower and canned tomatoes.",
+        "Drain and rinse the chickpeas, then add them to the pan with about 60 ml of water. Stir and bring the mixture to a gentle simmer.",
+        "Cover partly and cook for 12-15 minutes, stirring occasionally, until the cauliflower is tender. Add a little water if the sauce becomes too thick.",
+        "Taste and adjust the seasoning if desired. Serve the curry over the cooked rice."
+      ],
+      ingredients: [
+        { name: "Rice", amount: 60, unit: "g" },
+        { name: "Chickpeas", amount: 0.5, unit: "can" },
+        { name: "Canned tomatoes", amount: 0.2, unit: "can" },
+        { name: "Frozen cauliflower", amount: 100, unit: "g" },
+        { name: "Onion", amount: 0.1, unit: "each" },
+        { name: "Garlic", amount: 0.5, unit: "clove" },
+        { name: "Curry powder", amount: 2, unit: "g" }
+      ]
+    },
+    {
+      id: "black-bean-corn-pepper-rice",
+      name: "Black bean, corn, and pepper rice skillet",
+      description: "A colorful rice skillet with black beans, sweet corn, bell pepper, salsa, and cheddar.",
+      imageColors: ["#d2a148", "#8b503b", "#739957"],
+      steps: [
+        "Rinse the rice and cook it according to the package directions.",
+        "Dice the bell pepper and finely chop the onion. Add them to a large pan with a splash of water and cook over medium heat until beginning to soften.",
+        "Drain and rinse the black beans and corn. Add them to the pan with the salsa and stir until hot.",
+        "Fold in the cooked rice and heat the mixture until steaming throughout.",
+        "Sprinkle the grated cheddar over the skillet, cover for 1-2 minutes until melted, then serve."
+      ],
+      ingredients: [
+        { name: "Rice", amount: 70, unit: "g" },
+        { name: "Black beans", amount: 0.4, unit: "can" },
+        { name: "Canned corn", amount: 0.15, unit: "can" },
+        { name: "Bell pepper", amount: 0.5, unit: "each" },
+        { name: "Onion", amount: 0.1, unit: "each" },
+        { name: "Salsa", amount: 30, unit: "ml" },
+        { name: "Cheddar", amount: 20, unit: "g" }
+      ]
+    },
+    {
+      id: "tuna-tomato-spinach-pasta",
+      name: "Tuna, tomato, and spinach pasta",
+      description: "A savory tomato pasta with tuna, wilted spinach, garlic, and a little parmesan.",
+      imageColors: ["#d85e46", "#e7bb55", "#6f9b5b"],
+      steps: [
+        "Bring a pot of water to a boil and cook the pasta according to its package directions. Reserve a small mug of pasta water before draining.",
+        "While the pasta cooks, finely chop the onion and mince the garlic. Put them in a saucepan over medium heat with a splash of water and cook until soft.",
+        "Add the canned tomatoes and simmer gently for 8-10 minutes, stirring occasionally.",
+        "Drain the tuna and stir it into the sauce with the spinach. Cook until the spinach wilts and the tuna is hot.",
+        "Add the drained pasta and toss to coat. Loosen the sauce with a spoonful of reserved pasta water if needed.",
+        "Finish with grated parmesan and serve."
+      ],
+      ingredients: [
+        { name: "Pasta", amount: 90, unit: "g" },
+        { name: "Tuna", amount: 0.4, unit: "can" },
+        { name: "Canned tomatoes", amount: 0.2, unit: "can" },
+        { name: "Spinach", amount: 25, unit: "g" },
+        { name: "Onion", amount: 0.1, unit: "each" },
+        { name: "Garlic", amount: 0.5, unit: "clove" },
+        { name: "Parmesan", amount: 10, unit: "g" }
+      ]
+    },
+    {
+      id: "salmon-broccoli-potato-tray",
+      name: "Salmon, broccoli, and potato tray bake",
+      description: "A more substantial oven dinner with salmon, crisp-edged potatoes, broccoli, and lemon.",
+      imageColors: ["#d9b84e", "#6f9b5b", "#d27d4b"],
+      steps: [
+        "Heat the oven to 220 C (425 F). Cut the potatoes into small, even cubes and place them on a baking tray.",
+        "Bake the potatoes for 20 minutes, turning once. Meanwhile, cut the broccoli into bite-sized pieces and slice the lemon.",
+        "Move the potatoes to the sides of the tray and place the salmon in the centre. Add the broccoli around it and squeeze lemon over everything.",
+        "Bake for another 10-14 minutes, until the salmon flakes easily and reaches 63 C (145 F) at its thickest point, and the potatoes and broccoli are tender.",
+        "Let the salmon rest briefly, then divide the fish and vegetables among plates."
+      ],
+      ingredients: [
+        { name: "Salmon fillet", amount: 150, unit: "g" },
+        { name: "Potatoes", amount: 0.25, unit: "kg" },
+        { name: "Broccoli", amount: 100, unit: "g" },
+        { name: "Lemon", amount: 0.25, unit: "each" }
+      ]
     }
   ];
 
@@ -509,12 +620,17 @@
       "tuna-pea-pasta",
       "lemon-chicken-broccoli-rice",
       "creamy-chicken-mushroom-pasta",
-      "beef-broccoli-pepper-skillet"
+      "beef-broccoli-pepper-skillet",
+      "chicken-fried-rice",
+      "tuna-tomato-spinach-pasta",
+      "salmon-broccoli-potato-tray"
     ];
     const meatIds = [
       "lemon-chicken-broccoli-rice",
       "creamy-chicken-mushroom-pasta",
-      "beef-broccoli-pepper-skillet"
+      "beef-broccoli-pepper-skillet",
+      "chicken-fried-rice",
+      "salmon-broccoli-potato-tray"
     ];
     const veganIds = [
       "tomato-pasta",
@@ -523,7 +639,9 @@
       "lentil-curry-rice",
       "egg-vegetable-fried-rice",
       "chickpea-cabbage-wraps",
-      "peanut-veggie-noodles"
+      "peanut-veggie-noodles",
+      "chickpea-cauliflower-curry-rice",
+      "black-bean-corn-pepper-rice"
     ];
 
     return dinners.filter(function (dinner) {
@@ -964,7 +1082,7 @@
         + (householdSize === 1 ? " person." : " people.");
     recipeServings.hidden = false;
     const nutrition = nutritionPerServing[dinner.id];
-    recipeNutrition.hidden = !premiumActive;
+    recipeNutrition.hidden = !premiumActive || !nutrition;
     if (premiumActive && nutrition) {
       recipeNutrition.textContent = "Estimated per serving: " + nutrition.calories + " kcal, "
           + nutrition.protein + " g protein, " + nutrition.carbs + " g carbohydrates, and "
@@ -1022,44 +1140,80 @@
         .join(" ");
   }
 
+  const ingredientAliases = {
+    "garbanzo bean": "chickpea",
+    "garbanzo beans": "chickpeas",
+    "green pepper": "bell pepper",
+    "red pepper": "bell pepper",
+    "sweet pepper": "bell pepper",
+    "white rice": "rice",
+    "long grain rice": "rice"
+  };
+
   function ingredientMatches(query, recipeIngredient) {
-    const queryWords = normalizeIngredient(query).split(" ").filter(Boolean);
+    const normalizedQuery = normalizeIngredient(query);
+    const queryWords = (ingredientAliases[normalizedQuery] || normalizedQuery)
+        .split(" ").filter(Boolean);
     const recipeWords = normalizeIngredient(recipeIngredient).split(" ");
     return queryWords.length > 0 && queryWords.every(function (word) {
       return recipeWords.indexOf(word) !== -1;
     });
   }
 
-  function renderIngredientMatches(availableIngredients) {
+  function renderIngredientMatches(availableIngredients, budget) {
+    const storeKey = getStoreKey(document.getElementById("grocery-store").value);
     const matches = dinners.map(function (dinner) {
       const available = dinner.ingredients.filter(function (ingredient) {
         return availableIngredients.some(function (query) {
           return ingredientMatches(query, ingredient.name);
         });
       });
+      const usedQueries = availableIngredients.filter(function (query) {
+        return dinner.ingredients.some(function (ingredient) {
+          return ingredientMatches(query, ingredient.name);
+        });
+      });
+      const estimatedCost = dinner.ingredients.reduce(function (total, ingredient) {
+        const packageInfo = packageCatalog[ingredient.name + "|" + ingredient.unit];
+        if (!packageInfo) throw new Error("Missing package estimate for " + ingredient.name);
+        return total + ingredient.amount * packagePrice(packageInfo, storeKey) / packageInfo.size;
+      }, 0);
       return {
         dinner: dinner,
         available: available,
+        usedQueries: usedQueries,
         missing: dinner.ingredients.filter(function (ingredient) {
           return available.indexOf(ingredient) === -1;
         }),
-        score: available.length / dinner.ingredients.length
+        estimatedCost: estimatedCost,
+        usesAll: usedQueries.length === availableIngredients.length,
+        fitsBudget: Number.isFinite(budget) && budget > 0 && estimatedCost <= budget
       };
     }).filter(function (match) {
       return match.available.length > 0;
     }).sort(function (first, second) {
-      return second.score - first.score || second.available.length - first.available.length;
+      if (first.usesAll !== second.usesAll) return first.usesAll ? -1 : 1;
+      if (Number.isFinite(budget) && budget > 0 && first.fitsBudget !== second.fitsBudget) {
+        return first.fitsBudget ? -1 : 1;
+      }
+      return second.usedQueries.length - first.usedQueries.length
+          || second.available.length - first.available.length
+          || second.dinner.ingredients.length - first.dinner.ingredients.length
+          || second.estimatedCost - first.estimatedCost;
     });
 
     helperResults.replaceChildren();
     if (matches.length === 0) {
-      helperStatus.textContent = "No recipes matched those ingredients. Try common names like rice, eggs, pasta, beans, or tomatoes.";
+      helperStatus.textContent = "No recipes matched those ingredients. Try common names like rice, eggs, chicken, pasta, beans, or tomatoes.";
       return;
     }
 
     helperStatus.textContent = matches.length + " recipe"
         + (matches.length === 1 ? "" : "s")
-        + " matched at least one ingredient. Best matches are shown first; check each recipe for anything still needed.";
+        + " matched your ingredients. Recipes using every ingredient you listed are shown first; "
+        + (Number.isFinite(budget) && budget > 0
+          ? "within-budget, more ingredient-rich options are then prioritized."
+          : "add a per-person budget to prioritize richer options you can afford.");
     matches.forEach(function (match) {
       const card = document.createElement("article");
       card.className = "card helper-recipe-card";
@@ -1071,12 +1225,23 @@
       count.className = "helper-match-count";
       count.textContent = match.available.length + " of " + match.dinner.ingredients.length
           + " ingredients on hand";
+      const used = document.createElement("p");
+      used.className = "muted";
+      used.textContent = match.usesAll
+          ? "Uses all " + match.usedQueries.length + " ingredients you listed."
+          : "Uses " + match.usedQueries.length + " of " + availableIngredients.length
+              + " ingredients you listed: " + match.usedQueries.join(", ");
       const available = document.createElement("p");
       available.className = "muted";
       available.textContent = "You have: " + match.available.map(function (item) {
         return item.name;
       }).join(", ");
-      card.append(title, description, count, available);
+      const estimated = document.createElement("p");
+      estimated.className = "muted";
+      estimated.textContent = "Estimated ingredient cost: "
+          + currency.format(match.estimatedCost) + " per person"
+          + (match.fitsBudget ? " · within your budget" : "");
+      card.append(title, description, count, used, available, estimated);
 
       const missing = document.createElement("p");
       missing.className = "muted";
@@ -1166,12 +1331,17 @@
     event.preventDefault();
     const availableIngredients = ingredientInput.value.split(",")
         .map(function (item) { return item.trim(); })
-        .filter(Boolean);
+        .filter(function (item, index, items) {
+          return item && items.findIndex(function (other) {
+            return normalizeIngredient(other) === normalizeIngredient(item);
+          }) === index;
+        });
     ingredientInput.setCustomValidity(availableIngredients.length
         ? ""
         : "Enter at least one ingredient name, separated by commas.");
     if (!ingredientHelperForm.reportValidity()) return;
-    renderIngredientMatches(availableIngredients);
+    const budget = Number(document.getElementById("helper-budget").value);
+    renderIngredientMatches(availableIngredients, budget);
   });
   premiumSignInButton.addEventListener("click", function () {
     premiumActive = true;

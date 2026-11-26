@@ -3,37 +3,36 @@
 Your prototype shows *what* the product looks like. This document explains *why* it could become a business. Answer in your own words and refer to course concepts by name. See the term project brief on Moodle for length and grading.
 
 ## 1. The idea
-
-- **Customer:** Who exactly is it for?
-- **Problem:** What problem do they have today, and how do they solve it now?
-- **Solution:** What does your product do differently or better?
-- **Revenue:** How does the company make money?
+My website is called GoodFood. It is designed to allow anyone following a budget to create simple meal plans based off dietary, and monetary restrictions. All the user has to do is input their budget, how many people are eating, and their preferred grocery store, then let the site work its magic. 
+Living on a budget is not easy. Neither is knowing what to cook/eat to stay healthy and save as much money as possible. As a money conscious student myself, with like-minded roommates, I’ve experienced and seen the difficulty of knowing what to make and what is affordable as a student. This app creates a one stop site where students can input their budget and be shown healthy options to shop for. On top of that, it shows recipes with links to videos on how to make the meal. This is perfect for people with less or no cooking experience.  
+This website is different from others because it is primarily money conscious. Rather than giving complex meals that take lots of time and ingredients, it keeps it simple for people who just want to get by. Another huge perk from this site is that it can be free to users. Instead of charging the user to use the core system. Instead, it offers a premium subscription for extra perks. With that subscription comes features like automatically reusing ingredients across meals, personalized macro and calorie targets, Meal plans based on weekly grocery deals and Pantry inventory (what you already own). These features are helpful but not crucial to benefiting from the app. Secondly the site makes some income from affiliate revenue. When GoodFood generates a shopping list, it recommends products. It then links users to online grocery shopping, products, or retailers and earns commissions when users purchase through eligible affiliate links. Lastly, GoodFood makes some profit off of selling ad space on the website directly, when subscription is enabled however, these ads go away.
 
 ## 2. Where IT creates value
 
-Which parts of the value chain does your product change, and how? Which course concepts apply (e.g. scale, distribution channels, differentiation, data, switching costs)?
+GoodFood changes many parts of the value chain. For instance, it helps grocery store’s marketing and sales by allowing them to reach budget-conscious people and students through the deals it offers. This will prevent students from going the fast-food route and bring more into grocery stores. It applies to many of our course concepts. For example, scale economies, once GoodFood is functioning fully, serving additional users costs relatively little compared with the initial development cost. Growing its user base can increase profitability without proportionally increasing operating expenses. It can also build in switching costs, as users save their preferences, dietary restrictions, pantry inventory, past meal plans, and shopping habits, switching to another platform becomes less convenient. This could encourage customer retention. 
 
 ## 3. Network effects
 
 Does your product get more valuable as more people use it?
 
-- Is it a **one-sided** or **two-sided** market? Who are the sides?
-- Where does the extra value come from as the network grows?
-- How would you solve the "empty network" problem at launch?
-- Point to the part of your prototype that shows this.
+Next are the network effects, as the platform grows, it could attract more grocery retailers seeking access to students, which could create more deals and better grocery options for users. More users could consequently attract more retailers, reinforcing growth.
+GoodFood is a two-sided market. On one end, more users join the site the more grocery stores benefit, since it brings more people into their stores/ordering from their sites. On the other end, the more grocery stores join the platform, the more the users benefit. With more grocery store partnerships comes better deals and promotions to compete. 
+The empty network issue is negligible here because partnerships with grocery stores are not actually necessary for the website to operate. Meaning there are little to no costs to operating the site. As the site’s user base expands, then we can start reaching out for partnerships/promotions through stores. But until then it is not necessary. As is visible in the prototype, it can find an approximation of all prices on open-source websites and link users to recipe tutorials as well as websites to order items online for free. 
+
 
 ## 4. Can it be copied? (the moat question)
 
-Anyone in this class could rebuild your website in a weekend with the same AI tool. So the code is **not** your competitive advantage.
+	We can analyse this through the VRIN framework. Firstly, is an Ai meal planner valuable? Absolutely, however it is not necessarily rare or hard to imitate. But it is designed to capture value over time. The website itself is not a competitive advantage, The potential competitive advantage is developing an established student user base, a useful dataset of grocery prices and preferences, trusted partnerships, and a brand students return to regularly. This is what would set it apart from competitors. The rarity and difficulty to imitate come from a loyal user community and personalized grocery & budget data. 
+	A competitor could copy the website quite easily. However, GoodFood benefits from the first in advantage, since it is the first of its kind to offer this service for free it has a headstart in building consistent users. It can build trust and brand awareness among university students, create personalized recommendations using accumulated user preferences and overtime develop a reputation for consistently producing realistic, genuinely affordable meal plans. They could probably copy the technology within weeks. But building the same community, trusted brand, historical data, and retailer relationships could take months or years, depending on how successfully GoodFood establishes itself.
+	The advantages that strengthen overtime are, the Data advantage: As users generate more information about grocery prices, budgets, dietary preferences, and purchasing habits, GoodFood can make more accurate and personalized recommendations. More data improves the product. And switching costs: As users accumulate saved meal plans, grocery preferences, pantry inventories, budgets, and shopping histories, leaving GoodFood means losing some convenience and personalization. This encourages retention.
 
-- What about your business is **valuable, rare, hard to imitate and well-organized** (VRIN)?
-- What would a competitor with a bigger budget need to copy you, and how long would it take?
-- Which of your advantages get *stronger* over time (data, network, brand, switching costs)?
 
 ## 5. Cloud and operations
 
-What would it take to run this for real? Which parts would you buy as cloud services (SaaS, PaaS, IaaS), and what are the risks of relying on them?
+	GoodFood would use a cloud-first operating model. It would rely mostly on Paas and Saas solutions. Vercel would host the website, Supabase would manage databases and authentication and OpenAI would handle meal plan generation. Meanwhile Stripe would handle subscriptions. This minimizes startup costs, reduces the need for IT specialists. The Site could instead scale up as demand calls for it. I am aware that relying so heavily on cloud providers comes with its own risks, such as, service outages, vendor dependence, rising usage costs. GoodFood would reduce these risks by having real staff monitoring and maintaining usage control and secure data practices. 
 
 ## 6. Risks and ethics
 
-What could go wrong — for your customers, their data, or society? What would you do about it?
+	GoodFood faces ethical risks as any AI powered online service would. Especially one that deals with nutrition and food. For example, until official grocery store partnerships are available, Inaccurate grocery prices could cause users to exceed their budgets while incorrect recipes or nutritional information could negatively affect their health. The company would mitigate these risks by making it clear prices are estimates and offering links to the true current price and nutritional estimates, using reliable food safety sources, and reviewing AI-generated recommendations. User data could also be exposed through cybersecurity breaches. GoodFood would minimize data collection, implement security measures, and allow users to delete their information. Lastly, the presence of sponsored offers could potentially undermine the sites’ goal of helping users save money. To address this, advertisements would be clearly disclosed, and recommendations would prioritize affordability and customer needs.
+
+    I used AI (ChatGPT) to assist me in finding software solutions such as “Supabase” and “Varcel”, all reasoning and thinking is my own. 

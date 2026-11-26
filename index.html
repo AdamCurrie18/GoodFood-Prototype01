@@ -168,12 +168,17 @@
       <div class="page-heading">
         <p class="eyebrow">Meal helper</p>
         <h1>What’s in your kitchen?</h1>
-        <p class="lead">List ingredients you have, separated by commas. We’ll find the best matching recipes and show what else you need.</p>
+        <p class="lead">List ingredients you have, separated by commas. We’ll look for recipes that use as many of them together as possible and show what else you need.</p>
       </div>
       <form class="helper-form" id="ingredient-helper-form">
         <label for="ingredient-input">Ingredients on hand</label>
         <textarea id="ingredient-input" rows="3" placeholder="e.g. rice, eggs, frozen vegetables" required></textarea>
-        <p class="muted">Try common ingredients such as rice, eggs, pasta, beans, tomatoes, or tortillas.</p>
+        <p class="muted">Try common ingredients such as rice, eggs, chicken, frozen vegetables, pasta, beans, or tomatoes.</p>
+        <div class="form-field">
+          <label for="helper-budget">Budget per person for this meal (optional)</label>
+          <input id="helper-budget" type="number" min="1" step="0.50" placeholder="e.g. 8.00">
+        </div>
+        <p class="muted">A larger budget can bring more ingredient-rich meals higher. Cost is a rough estimate from sample package prices.</p>
         <button class="button" type="submit">Find recipes</button>
       </form>
       <p class="helper-status muted" id="helper-status" aria-live="polite"></p>
@@ -321,6 +326,6 @@
 
   <!-- Scripts load in this order: data first, then the code that uses it. -->
   <script src="data.js?v=meal-helper-1"></script>
-  <script src="app.js?v=dietary-planning-1"></script>
+  <script src="app.js?v=ingredient-matches-1"></script>
 </body>
 </html>
